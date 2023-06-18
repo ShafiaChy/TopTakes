@@ -10,7 +10,7 @@ const Login = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const { signInWithGoogle,loginWithEmailAndPassword } = useAuth();
+  const {authError, signInWithGoogle,loginWithEmailAndPassword } = useAuth();
 
   const handleGoogleSignIn = () => {
     signInWithGoogle(location,navigate)
@@ -57,15 +57,22 @@ const handleEmailAndPasswordSignIn = e => {
             <form onSubmit={handleEmailAndPasswordSignIn}>
              
               <div className="form-outline mb-4">
-                <input onBlur={handleEmailChange} type="email" id="form1Example13" className="form-control form-control-lg" />
+                <input onBlur={handleEmailChange} type="email" id="form1Example13" className="form-control form-control-lg" required/>
                 <label className="form-label" htmlFor="form1Example13">Email address</label>
               </div>
     
              
               <div className="form-outline mb-4">
-                <input onBlur={handlePasswordChange} type="password" id="form1Example23" className="form-control form-control-lg" />
+                <input onBlur={handlePasswordChange} type="password" id="form1Example23" className="form-control form-control-lg" required/>
                 <label className="form-label" htmlFor="form1Example23">Password</label>
               </div>
+
+              {
+               authError?
+               <span className="text-danger" style={{textShadow:"1px 1px rgb(83, 80, 80)"}}><h6>{authError}</h6></span>
+               :
+               <span className="text-danger" style={{textShadow:"1px 1px rgb(83, 80, 80)"}}><h6>{error}</h6></span>
+              }
                 <div className='d-flex '>
                     <p className='me-2 text-white'>Dont have an account?</p> <Link to='/register' className='text-danger'> Register</Link>
                 </div>

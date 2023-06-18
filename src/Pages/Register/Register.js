@@ -11,7 +11,7 @@ const Register = () => {
   const [name, setName] =  useState('');
   const [error, setError] =  useState('');
 
-  const { signInWithGoogle , createAccount} = useAuth();
+  const {authError, signInWithGoogle , createAccount} = useAuth();
   const handleGoogleSignIn = () => {
     signInWithGoogle(location,navigate)
 
@@ -67,7 +67,7 @@ const handleRegistration = e => {
                       <div class="d-flex flex-row align-items-center mb-4">
                         <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                         <div class="form-outline flex-fill mb-0">
-                          <input onBlur={handleNameChange} type="text" id="form3Example1c" class="form-control" />
+                          <input onBlur={handleNameChange} type="text" id="form3Example1c" class="form-control" required/>
                           <label class="form-label" for="form3Example1c">Your Name</label>
                         </div>
                       </div>
@@ -75,7 +75,7 @@ const handleRegistration = e => {
                       <div class="d-flex flex-row align-items-center mb-4">
                         <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
                         <div class="form-outline flex-fill mb-0">
-                          <input onBlur={handleEmailChange} type="email" id="form3Example3c" class="form-control" />
+                          <input onBlur={handleEmailChange} type="email" id="form3Example3c" class="form-control" required/>
                           <label class="form-label" for="form3Example3c">Your Email</label>
                         </div>
                       </div>
@@ -83,11 +83,16 @@ const handleRegistration = e => {
                       <div class="d-flex flex-row align-items-center mb-4">
                         <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
                         <div class="form-outline flex-fill mb-0">
-                          <input onBlur={handlePasswordChange} type="password" id="form3Example4c" class="form-control" />
+                          <input onBlur={handlePasswordChange} type="password" id="form3Example4c" class="form-control" required/>
                           <label class="form-label" for="form3Example4c">Password</label>
                         </div>
                       </div>
-    
+                      {
+                          authError?
+                          <span className="text-danger ms-2" style={{textShadow:"1px 1px rgb(83, 80, 80)"}}><h6 className='ms-3'>{authError}</h6></span>
+                          :
+                          <span className="text-danger" style={{textShadow:"1px 1px rgb(83, 80, 80)"}}><h6 className='ms-3'>{error}</h6></span>
+                      }
                       <div className='d-flex '>
                     <p className='ms-3 me-2 text-white'>Already have an account?</p> <Link to='/login' className='text-danger'> Login</Link>
                     </div>

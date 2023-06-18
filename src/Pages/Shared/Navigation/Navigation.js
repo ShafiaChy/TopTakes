@@ -1,5 +1,5 @@
 import React from 'react';
-import {  Container,Nav, Navbar, NavDropdown, NavLink, Offcanvas } from 'react-bootstrap';
+import {  Container,Nav, Navbar, NavDropdown,  Offcanvas } from 'react-bootstrap';
 import imageOne from '../../../Images/imageOne.jpg'
 import imageTwo from '../../../Images/imageTwo.jpg'
 import imageThree from '../../../Images/imageThree.jpg'
@@ -11,7 +11,7 @@ import './Navigation.css'
 import useAuth from '../../../Hooks/useAuth';
 
 const Navigation = () => {
-    const { user,logOut } = useAuth();
+    const { user,logOut, admin } = useAuth();
     return (
         <div >
             <Navbar style={{backgroundColor:'black'}} expand={false}>
@@ -74,23 +74,51 @@ const Navigation = () => {
 
                 
                     <Nav className="justify-content-end flex-grow-1 pe-3 mb-5">
-                    <h3 className='text-white mb-3'>Explore</h3>
+                    
                         <Link className='text-white text-decoration-none' to="/home">Home</Link>
-                        <Link className='text-white text-decoration-none' to="/gallery">Gallery</Link>
-                        <Link className='text-white text-decoration-none' to="/booking">Booking</Link>
+                        <Link className='text-white text-decoration-none' to="/home">About Us</Link>
+                        <NavDropdown  title="Explore" id="offcanvasNavbarDropdown">
+                            <Link className='text-dark text-decoration-none ms-3' to="/gallery">Gallery</Link>
+                            <hr/>
+                            <Link className='text-dark text-decoration-none ms-3' to="/reviews">Reviews</Link>
+                            <hr/>
+                            <Link className='text-dark text-decoration-none ms-3' to="/booking">Booking</Link>  
+                        </NavDropdown>
+                      {
+                          user.email &&  <div>
+                            <div>
+                               {
+                                   !admin &&  <NavDropdown title="Dashboard" id="offcanvasNavbarDropdown">
+                                   <Link className='text-dark text-decoration-none ms-3' to="/cart">My Cart</Link>
+                            
+                                   <hr/>
+                                   <Link className='text-dark text-decoration-none ms-3' to="/addreview">Add Review</Link>
+                                   <hr/>
+                                   <Link className='text-dark text-decoration-none ms-3' to="/cart">Payment</Link>
+                                 
+                                  
+                                   
+                                   
+                                   
+                               </NavDropdown>
+                               }
+                           </div>
+                            
+                            
+                           
+                           <div>
+                               {
+                                   admin &&  <NavDropdown title="Dashboard" id="offcanvasNavbarDropdown">
+                                   <Link className='text-dark text-decoration-none ms-3' to="/manageorders">Manage All Orders</Link>
+                                   <hr/>
+                                   {/* <Link className='text-dark text-decoration-none ms-3' to="/cart">Add Picture</Link>
+                                   <hr/> */}
+                                   <Link className='text-dark text-decoration-none ms-3' to="/admin">Make Admin</Link></NavDropdown>
+                               }
+                           </div>
                         
-                       
-                    <NavDropdown title="Categories" id="offcanvasNavbarDropdown">
-                        <NavDropdown.Item    href="#action3" >Fashion</NavDropdown.Item>
-                        <hr/>
-                        <NavDropdown.Item  href="#action4">Lifestyle </NavDropdown.Item>
-                        <hr/>
-                        <NavDropdown.Item  href="#action4">Nature</NavDropdown.Item>
-                        <hr />
-                        <NavDropdown.Item  href="#action4">Portraits </NavDropdown.Item>
-                        
-                        
-                    </NavDropdown>
+                    </div>
+                      }
                     </Nav>
                     <h5 className="text-white me-2 mb-2 mt-2" style={{textShadow:"1px 1px rgb(83, 80, 80)"}}>{user.displayName}</h5>
                         {
@@ -100,7 +128,7 @@ const Navigation = () => {
                               <button style={{backgroundColor:'black',color: "#ffd8cd"}}className="rounded py-2 px-3  py-sm-2 px-sm-3" onClick={logOut}>Sign Out</button>
                             </div>
                             :
-                            <Link to='/login' className='btn btn-outline-secondary text-white' >Login</Link> 
+                            <Link style={{backgroundColor:'grey'}} to='/login' className='btn btn-outline-secondary text-white' >Login</Link> 
                         }
                    
                 </Offcanvas.Body>

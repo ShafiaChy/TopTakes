@@ -7,7 +7,7 @@ import slideFour from '../../../Images/People_In_the_Landscape_01.jpg'
 
 const Banner = () => {
     return (
-        <div className='d-flex mx-auto my-4'>
+        <div  style={{backgroundColor:'black'}}  className='d-flex mx-auto  py-5'>
             <Carousel  fade className='banner container'>
             <Carousel.Item style={{height:'600px'}}>
                 <img
