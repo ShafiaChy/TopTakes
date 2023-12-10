@@ -14,11 +14,11 @@ const ManageAllOrders = () => {
   return (
     <>
       <Navigation></Navigation>
-      <div style={{ minHeight: 300 }} className="bg-light pt-4">
+      <div style={{ minHeight: 300 }} className="bg-light pt-4 ">
         <h1 className="bg-dark text-center text-white py-5 mt-2">
           Clients Orders
         </h1>
-        <table>
+        <table className="">
           <thead>
             <tr>
               <th>Name</th>

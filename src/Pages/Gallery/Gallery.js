@@ -5,7 +5,7 @@ import SinglePicture from "./SinglePicture";
 
 const Gallery = () => {
   const [pictures, setPictures] = useState([]);
-
+  console.log(pictures);
   useEffect(() => {
     fetch("https://my-photography-server-shafiachy.vercel.app/gallery")
       .then((res) => res.json())

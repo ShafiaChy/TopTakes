@@ -28,7 +28,7 @@ const Cart = () => {
   }
 
   return (
-    <div className="body">
+    <div className="body bg-pic ">
       <Navigation></Navigation>
       <div className="px-4 px-lg-0">
         <div className="container text-white py-5 text-center">
@@ -107,7 +107,8 @@ const Cart = () => {
               </div>
               <div className="col-lg-6">
                 <img
-                  src="https://img.collegedekhocdn.com/media/img/careers/photographer.jpg"
+                  className="img-height"
+                  src="https://www.adorama.com/alc/wp-content/uploads/2021/04/photography-camera-types-feature-1280x720.jpg"
                   alt=""
                 />
               </div>

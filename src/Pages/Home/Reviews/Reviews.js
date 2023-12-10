@@ -13,7 +13,7 @@ const Reviews = () => {
   }, []);
 
   return (
-    <div className="review-layout py-5">
+    <div className="review-layout bg-black">
       <input type="radio" name="position" />
       <input type="radio" name="position" />
       <input
@@ -26,8 +26,8 @@ const Reviews = () => {
       <input type="radio" name="position" />
       <main id="carousel">
         {reviews.map((review) => (
-          <div className="item">
-            <div className="container">
+          <div className="item card-color">
+            <div className="container ">
               <h3 className="mt-4 text-white text-center text-decoration-underline">
                 {review.name}
               </h3>
